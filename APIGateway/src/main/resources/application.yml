@@ -1,0 +1,23 @@
+server:
+  port: 8090
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api_route
+          uri: http://localhost:8101
+          predicates:
+            - Path=/api/**
+dubbo:
+  application:
+    name: dubbo-duuApi-backend-provider
+    qosPort : 22223
+  protocol:
+    name: dubbo
+    port: 20880
+  registry:
+    id: nacos-registry
+    address: nacos://localhost:8848
+    check : false
+  consumer:
+    check : false
